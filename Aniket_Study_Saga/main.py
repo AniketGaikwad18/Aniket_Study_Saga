@@ -1,23 +1,12 @@
 import streamlit as st
-import subprocess
-import sys
-import requests
-from PIL import Image
-
-# ✅ Fix Lottie Import
-try:
-    from streamlit_lottie import st_lottie
-except ModuleNotFoundError:
-    subprocess.run([sys.executable, "-m", "pip", "install", "streamlit-lottie==0.0.5"])
-    from streamlit_lottie import st_lottie
-
-# ✅ Import correct switch_page from extras
+from streamlit_lottie import st_lottie
 from streamlit_extras.switch_page_button import switch_page
+import requests
 
-# Config
+# --- Page Config ---
 st.set_page_config(page_title="Aniket’s Study Saga", layout="wide")
 
-# Lottie loader
+# --- Load Lottie animation from URL ---
 def load_lottie_url(url):
     r = requests.get(url)
     if r.status_code != 200:
@@ -26,24 +15,29 @@ def load_lottie_url(url):
 
 student_lottie = load_lottie_url("https://assets2.lottiefiles.com/packages/lf20_jtbfg2nb.json")
 
-# UI
+# --- Title & Tagline ---
 st.markdown("""
 <h1 style='text-align: center; font-size: 4rem; color: #0072C6;'>Aniket’s Study Saga</h1>
 <h3 style='text-align: center; font-family: cursive; color: #FF4B4B;'>Smart Prep for Smarter Students ✨</h3>
 """, unsafe_allow_html=True)
 
-st.success("👋 Welcome to Aniket’s Study Saga! Upload papers, get predictions, and ask anything!")
+# --- Welcome Message ---
+st.success("👋 Welcome to Aniket’s Study Saga! Upload past papers, get predictions, and ask anything!")
 
+# --- Instructions ---
 with st.expander("📌 Instructions"):
     st.markdown("""
-    - Choose a subject
-    - Upload **2 or more PDFs**
-    - Get predicted questions
-    - Download PDF or ask questions
+    - Choose a subject from below.
+    - Upload **at least two PDFs** of previous year papers.
+    - AI will predict possible exam questions.
+    - You can also ask questions and get AI-generated answers.
+    - Predictions are downloadable as PDF.
     """)
 
+# --- Layout with Two Columns ---
 col1, col2 = st.columns([1, 2])
 
+# --- Subject Buttons (Left Column) ---
 with col1:
     st.subheader("📚 Select a Subject")
 
@@ -64,5 +58,9 @@ with col1:
         if st.button(subject):
             switch_page(page)
 
+# --- Animation (Right Column) ---
 with col2:
-    st_lottie(student_lottie, height=400, key="studying")
+    if student_lottie:
+        st_lottie(student_lottie, height=400, key="studying")
+    else:
+        st.info("📎 Lottie animation could not load.")
