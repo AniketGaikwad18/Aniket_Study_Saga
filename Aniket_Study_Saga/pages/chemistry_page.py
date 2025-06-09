@@ -27,7 +27,7 @@ st.markdown(f"""
     padding: 10px 0;
     border-bottom: 2px solid #ddd;
 ">
-🔌 {st.session_state.get('subject_name', 'CG')}
+🔌 {st.session_state.get('subject_name', 'Chemistry')}
 </h1>
 """, unsafe_allow_html=True)
 
