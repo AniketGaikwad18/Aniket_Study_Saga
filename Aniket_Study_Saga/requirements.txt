@@ -1,0 +1,9 @@
+streamlit==1.24.1
+streamlit-lottie==0.0.5
+streamlit-extras==0.3.0
+requests
+pdfplumber
+fpdf
+scikit-learn
+spacy
+PyPDF2
