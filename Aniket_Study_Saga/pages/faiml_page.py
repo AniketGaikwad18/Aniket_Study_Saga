@@ -18,20 +18,19 @@ thinking_lottie = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20
 st.set_page_config(page_title="FAIML  - Aniket’s Study Saga", layout="wide")
 
 # --- Page Heading with inline styles ---
-st.markdown("""
+st.markdown(f"""
 <h1 style="
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 4rem;
-    font-weight: 900;
-    background: linear-gradient(90deg, #1e90ff, #00bfff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    margin-bottom: 0.5rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #0a66c2;
+    padding: 10px 0;
+    border-bottom: 2px solid #ddd;
 ">
-FAIML
+🔌 {st.session_state.get('subject_name', 'FAIML')}
 </h1>
 """, unsafe_allow_html=True)
+
 
 # --- Instructions ---
 st.markdown("""
